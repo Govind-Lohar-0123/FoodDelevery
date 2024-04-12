@@ -5,6 +5,7 @@ import passport from "passport";
 import connectDB from "./config/db/connectDB.js";
 import UserRoute from "./routes/userRoute.js";
 import FoodRoute from "./routes/foodRoute.js";
+import OrderRoute from "./routes/orderRoute.js";
 
 dotenv.config();
 const app = express();
@@ -26,6 +27,7 @@ connectDB(DATABASE_URL);
 //Load Routes
 app.use("/api", UserRoute);
 app.use("/foodApi", FoodRoute);
+app.use("/orderApi", OrderRoute);
 
 app.get("/", (req, res) => (res.send("HelloWolrd")))
 

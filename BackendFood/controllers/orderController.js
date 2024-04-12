@@ -8,7 +8,7 @@ class OrderController {
         res.status(200).send({order_data:result.order_data,status:true});
     }
     static addOrder = async (req, res) => {
-        const result =await orderModel.insertMany({email},{order_data:req.foodItems});
+        const result =await orderModel.insertMany({email},{order_data:req.order_data});
         res.status(200).send({status:true});
         
     }

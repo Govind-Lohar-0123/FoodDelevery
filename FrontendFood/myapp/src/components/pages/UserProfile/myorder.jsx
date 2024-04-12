@@ -1,20 +1,24 @@
 import react from "react";
 import { NavLink } from "react-router-dom";
 import { useStateCard, useDispatchCard } from "../CardProvider.js";
-
+import { useAddOrderMutation } from "../../../services/orderSlice.js";
 export default function MyOrder() {
 
   const state = useStateCard();
-  const dispatch = useDispatchCard();
+  const cardDispatch = useDispatchCard();
+  const addOrderDispatch= useAddOrderMutation();
   let totalPrice = 0;
   console.log(state);
 
   const handleDelete = (e, removeId) => {
     e.preventDefault();
-    dispatch({ type: "DELETE", removeId });
+    cardDispatch({ type: "DELETE", removeId });
+  }
 
-
-
+  const addOrderHandle=(e)=>{
+    e.preventDefault();
+    addOrderDispatch({order_data:state});
+    console.log("Successfull");
   }
 
 
@@ -44,7 +48,7 @@ export default function MyOrder() {
               return (
                 <tr>
                   <td>{i + 1}</td>
-                  <td>{item.foodTitle}</td>
+                  <td>{item.foodName}</td>
                   <td>{item.foodQty}</td>
                   <td>{item.foodSize}</td>
 
@@ -63,7 +67,7 @@ export default function MyOrder() {
               </tbody>
             </table>
             <p className="text-white mt-5 h2" >Total Price :- {totalPrice}/</p>
-            <button className="btn btn-primary mt-2">Checkout</button>
+            <button className="btn btn-primary mt-2" onClick={addOrderHandle}>Checkout</button>
           </> : <div className="text-white text-center h1">Card is Empty </div>
       }
     </div>

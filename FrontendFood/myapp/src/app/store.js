@@ -1,5 +1,6 @@
 import {configureStore} from "@reduxjs/toolkit";
 import apiSlice from "../features/api/apiSlice.js";
+import orderSlice from "../services/orderSlice.js";
 import foodSlice from "../services/foodSlice.js";
 import searchSlice from "../features/searchSlice.js";
 import { setupListeners } from "@reduxjs/toolkit/query";
@@ -11,12 +12,13 @@ const store=configureStore({
     reducer:{
         [apiSlice.reducerPath]:apiSlice.reducer,
         [foodSlice.reducerPath]:foodSlice.reducer,
+        [orderSlice.reducerPath]:orderSlice.reducer,
         searchFood:searchSlice,
         
     },
    
 middleware:(getDefaultMiddleware)=>{
-    return getDefaultMiddleware().concat(apiSlice.middleware,foodSlice.middleware);
+    return getDefaultMiddleware().concat(apiSlice.middleware,foodSlice.middleware,orderSlice.middleware);
 }
     // middleware:(getDefaultMiddleware)=>{return getDefaultMiddleware().concat(foodSlice.middleware);}
    

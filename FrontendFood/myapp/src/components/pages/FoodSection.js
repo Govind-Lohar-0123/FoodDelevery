@@ -27,7 +27,7 @@ function FoodSection() {
                                 <h2 className="h1 font-weight-bold m-0  food-category text-white  food-title  " >{data.categoryName}</h2>
                                 <div className="row-div pt-5">
                                     {
-                                        responseInfo.data.foodData.filter((item, i) => (item.categoryName == data.categoryName) && (item.title.toLowerCase().includes(search.toLowerCase()))).
+                                        responseInfo.data.foodData.filter((item, i) => (item.categoryName == data.categoryName) && (item.foodName.toLowerCase().includes(search.toLowerCase()))).
                                             map((item, i) => {
                                                 return (<Card item={item} key={i} />)
 
