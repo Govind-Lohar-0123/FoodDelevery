@@ -7,29 +7,14 @@ import { getUser } from "../auth/userActions.js";
 export default function MyOrder() {
 
   const state = useStateCard();
-  const cardDispatch = useDispatchCard();
-  const [addOrderDispatch,responseInfo]= useAddOrderMutation();
-  let totalPrice =state.reduce((prev,curr)=>{return prev+curr.foodPrice},[0]);
-  console.log(totalPrice);
-  let loggedUser=getUser();
-  
- 
-  
-  const handleDelete = (e, removeId) => {
-    e.preventDefault();
-    cardDispatch({ type: "DELETE", removeId });
-  }
+  let loggedUser = getUser();
+  let totalPrice = state.reduce((prev, curr) => { return parseInt(prev) + parseInt(curr.foodPrice) }, [0]);
+  let [getMyOrder,responseInfo]=useGetOrderMutation(loggedUser);
 
-  const handleCheckout=async (e)=>{
-    e.preventDefault();
-    console.log(state);
-    const result=await addOrderDispatch({order_data:[{order_date:new Date().toDateString()},...state],email:loggedUser});
-    if(result.data.status==true)
-      cardDispatch({type:"DROP"});
-    console.log("result",result);
-  }
-
-
+  useEffect(()=>{
+      const result=await getMyOrder(loggedUser);
+      
+  })
 
 
   return (<>
@@ -48,37 +33,30 @@ export default function MyOrder() {
                   <th>FoodName</th>
                   <th>Quantity</th>
                   <th>Shape</th>
-                  <th>Action</th>
+                  
                 </tr>
               </thead>
               <tbody>
                 {
-                  
-            state.map((item, i) => {
-              return (
-                <tr>
-                  <td>{i + 1}</td>
-                  <td>{item.foodName}</td>
-                  <td>{item.foodQty}</td>
-                  <td>{item.foodSize}</td>
 
-                  <td>
-                    {/* <button className="btn btn-yellow "><i class="fa-solid fa-trash"></i></button> */}
-                    <NavLink to="#" className="btn btn-danger " onClick={(e) => handleDelete(e, i)}><i className="fa-2x fa-solid d-block fa-trash text-white"></i></NavLink>
+                  state.map((item, i) => {
+                    return (
+                      <tr>
+                        <td>{i + 1}</td>
+                        <td>{item.foodName}</td>
+                        <td>{item.foodQty}</td>
+                        <td>{item.foodSize}</td>
 
-                  </td>
+                      </tr>
+                    )
+                  })
 
-                </tr>
-                )
-            })
-            
-          }
-
+                }
               </tbody>
             </table>
-            <p className="text-white mt-5 h2" >Total Price :- {totalPrice}/</p>
-            <button className="btn btn-primary mt-2" onClick={handleCheckout}>Checkout</button>
-          </> : <div className="text-white text-center h1">Card is Empty </div>
+
+
+          </> : <div className="text-white text-center h1">MyOrder is Empty </div>
       }
     </div>
 

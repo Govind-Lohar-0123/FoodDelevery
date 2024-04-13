@@ -6,7 +6,7 @@ var pages = "";
 var slides ="";
 var idx=0;
 
-const loaded=()=>{
+const bgLoaded=()=>{
 
 
     pages = document.querySelectorAll(".paginate > li");
@@ -58,6 +58,8 @@ const loaded=()=>{
 
 
 // authentication/
+}
+const authLoaded=()=>{
 
 
 
@@ -94,4 +96,4 @@ const loaded=()=>{
 
 
 }
-export default loaded;
+export {authLoaded,bgLoaded}

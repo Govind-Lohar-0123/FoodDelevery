@@ -7,18 +7,19 @@ function Card(props) {
     const state=useStateCard();
     const [foodQty,setFoodQty]=useState(1);
     const [foodSize,setFoodSize]=useState("Full");
-    
-    let finalPrice=0;
+    let price=(foodSize=="Full")?props.item.foodPrice:(props.item.foodPrice/2);
+   
+    let finalPrice=(foodQty*price);
     function handleAddToCard (e){
         e.preventDefault();
         
-        let foodItem={foodQty,foodSize,foodId:props.item._id,foodPrice:props.item.foodPrice,foodName:props.item.foodName,foodImg:props.item.foodImg};
+        let foodItem={foodQty,foodSize,foodId:props.item._id,foodPrice:finalPrice,foodName:props.item.foodName,foodImg:props.item.foodImg};
         
      
         
         let isSameSize=Boolean(false);
-        for(let foodItem of state){
-            if(foodItem.foodId==props.item._id && foodItem.foodSize==foodSize){
+        for(let food of state){
+            if(food.foodId==props.item._id && food.foodSize==foodSize){
                 isSameSize=true;break;
             }
         }
@@ -60,7 +61,7 @@ function Card(props) {
                         }
 
                     </select>
-                    <span className="text-black col-div font-weight-bold food-price" >{props.item.foodPrice}</span>
+                    <span className="text-black col-div font-weight-bold food-price" >{finalPrice}/</span>
 
                 </div>
             </div>

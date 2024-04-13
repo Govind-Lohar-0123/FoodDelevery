@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 
 import foodbg1 from "../images/foodbg1.jpg";
@@ -7,6 +7,7 @@ import foodbg3 from "../images/foodbg3.jpg";
 import foodbg4 from "../images/foodbg4.jpg";
 import { useDispatch ,useSelector} from "react-redux";
 import { addSearch } from "../../features/searchSlice.js";
+import { bgLoaded } from "../js/script.js";
 
 function Background(){
     const [search,setSearch]=useState("");
@@ -16,6 +17,7 @@ function Background(){
         setSearch(e.target.value);
         dispatch(addSearch(search));
     }
+    useEffect(()=>{bgLoaded()})
 
     return (<>
         <div className="back-ground">

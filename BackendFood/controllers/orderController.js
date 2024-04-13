@@ -17,18 +17,19 @@ class OrderController {
     }
     static addOrder = async (req, res) => {
         try {
-            let result = await orderModel.find({ email: req.body.email });
+            let result=null;
+            result = await orderModel.find({ email: req.body.email });
            
-            if (result == null) {
+            if (result=="") {
                
-                 result = await orderModel.insertMany({ ...req.body });
+                 result = await orderModel.insertMany([{ ...req.body }]);
             
             }
 
             else {
               
                  result = await orderModel.findOneAndUpdate({email:req.body.email},{$push:{order_data:req.body.order_data}});
-                console.log(result);
+                
             }
             res.status(200).send({ status: true });
         }

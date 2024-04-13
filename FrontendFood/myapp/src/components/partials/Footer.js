@@ -1,12 +1,12 @@
 import React ,{useEffect} from "react";
-import loaded from "../js/script.js"
+import {authLoaded} from "../js/script.js"
 
 
 function Footer(){
     
 
     useEffect(()=>{
-        loaded();
+       authLoaded();
     })
     return (<>
         <footer>

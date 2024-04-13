@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import AdminDash from "./components/pages/Admin/AdminDash";
 import ProfileDash from "./components/pages/UserProfile/ProfileDash";
 import Profile from "./components/pages/UserProfile/profile";
-import MyOrder from "./components/pages/UserProfile/myorder";
+import MyOrder from "./components/pages/UserProfile/MyCard.jsx";
 import store from "./app/store.js";
 import { Provider } from "react-redux";
 import CardProvider from "./components/pages/CardProvider.js";
