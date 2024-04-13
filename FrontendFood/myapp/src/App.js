@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route ,redirect} from "react-router-dom";
 import Layout from "./components/pages/Layout";
 import Home from "./components/pages/Home";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,6 +10,7 @@ import MyOrder from "./components/pages/UserProfile/myorder";
 import store from "./app/store.js";
 import { Provider } from "react-redux";
 import CardProvider from "./components/pages/CardProvider.js";
+import { getToken } from "./components/pages/auth/tokenAction.js";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
+             
               <Route path="/" element={<ProfileDash />}>
                 <Route path="profile" element={<Profile />} />
                 <Route path="/myorder" element={<MyOrder />} />
@@ -27,7 +29,7 @@ export default function App() {
                 <Route path="" element={<MyOrder />} />
               </Route>
             </Route>
-        </Routes>
+          </Routes>
 
         </BrowserRouter>
       </CardProvider>

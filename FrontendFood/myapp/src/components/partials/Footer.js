@@ -1,9 +1,13 @@
-import React from "react";
-
+import React ,{useEffect} from "react";
+import loaded from "../js/script.js"
 
 
 function Footer(){
     
+
+    useEffect(()=>{
+        loaded();
+    })
     return (<>
         <footer>
         <marquee direction="right" behavior="alternate" loop className="w-100 py-3  bg-primary text-black">

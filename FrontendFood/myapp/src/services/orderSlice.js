@@ -5,24 +5,25 @@ const orderSlice = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000/orderApi" }),
     endpoints: builder => ({
 
-        getOrder: builder.query({
-            query: () => ({
+        getOrder: builder.mutation({
+            query: (email) => ({
                 url: "/getorder",
-                method: "GET",
+                method: "post",
+                body:{email}
             })
         }),
-
         addOrder: builder.mutation({
             query: (order_data) => ({
                 url: "/addorder",
-                method: "PUT",
-                body: order_data
+                method: "post",
+                body:{...order_data}
             })
-        })
+        }),
+       
 
     })
 
 
 })
-export const { useGetOrderQuery,useAddOrderMutation } = orderSlice;
+export const { useGetOrderMutation,useAddOrderMutation } = orderSlice;
 export default orderSlice;

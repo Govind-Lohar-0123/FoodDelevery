@@ -27,6 +27,16 @@ const apiSlice = createApi({
 
                     }
                 }
+            }),
+           getUser: builder.query({
+                query: (token) => {
+                    return {
+                        url: "getuser",
+                        method: "get",
+                        headers: { "authorization": "Bearer " + token }
+
+                    }
+                }
             })
         }
     }
@@ -34,5 +44,5 @@ const apiSlice = createApi({
 
 })
 
-export const { useUserRegisterMutation, useUserLoginMutation } = apiSlice;
+export const { useUserRegisterMutation, useUserLoginMutation ,useGetUserQuery} = apiSlice;
 export default apiSlice;

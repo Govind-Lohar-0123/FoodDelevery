@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../../css/auth.css";
 import { useUserRegisterMutation } from "../../../features/api/apiSlice";
 import { setToken } from "./tokenAction";
-
+console.log("register")
 export default function Register (){
     const [user,setUser]=useState({
         user:"",email:"",password:"",mob:"",

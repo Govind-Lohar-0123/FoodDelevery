@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 function FoodSection() {
     const responseInfo = useGetFoodsQuery();
-
+    console.log("food",responseInfo);
     const search = useSelector((state) => state.searchFood.search);
 
     return (<>
@@ -17,9 +17,9 @@ function FoodSection() {
             {/* --------------FOOD CATEGORY------------------ */}
 
             {
-                (responseInfo.isSuccess) ?
+                (responseInfo.isSuccess==true) ?
                     responseInfo.data.foodData.map((data, i) => {
-                        console.log(search);
+                     
                         return (
 
 

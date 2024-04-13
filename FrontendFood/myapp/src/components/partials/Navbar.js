@@ -1,29 +1,32 @@
 
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../css/navbar.css";
 import "../css/common.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import "../css/profile.css";
 import "../css/responsive.css";
-import "../js/script.js";
+
 import { getToken, removeToken } from "../pages/auth/tokenAction.js";
 import { useStateCard } from "../pages/CardProvider.js";
+import { getUser } from "../pages/auth/userActions.js";
+import { useSelector } from "react-redux";
+
 
 
 
 function Navbar() {
-
     const isLogin = getToken();
+    let loggedUser=getUser();
     let state=useStateCard();
     const navigate = useNavigate();
-    console.log(getToken());
+    console.log("user=",loggedUser);
     function logoutHandle(e) {
         e.preventDefault();
         removeToken();
         navigate("/");
-        console.log(getToken());
     }
+   
 
     return (
         <>
@@ -51,7 +54,7 @@ function Navbar() {
                                             <li><NavLink to="#" className="btn bg-white register-btn">SignUp</NavLink></li>
                                         </> :
                                         <>
-                                            <li><NavLink to="/profile" className=" ext-transform-lowercase">govindlohar3210@gmail.com</NavLink></li>
+                                            <li><NavLink to="/profile" className=" text-transform-lowercase "style={{textTransform:"lowercase"}}>{loggedUser}</NavLink></li>
                                             <li><NavLink to="#" onClick={logoutHandle} className="btn bg-white  text-dark">Logout</NavLink></li>
                                         </>
 

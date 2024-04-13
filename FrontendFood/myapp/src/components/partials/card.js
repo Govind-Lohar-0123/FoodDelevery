@@ -7,7 +7,7 @@ function Card(props) {
     const state=useStateCard();
     const [foodQty,setFoodQty]=useState(1);
     const [foodSize,setFoodSize]=useState("Full");
-    console.log(foodSize);
+    
     let finalPrice=0;
     function handleAddToCard (e){
         e.preventDefault();
@@ -27,7 +27,7 @@ function Card(props) {
                 foodItem={foodQty,foodId:props.item._id,foodPrice:finalPrice,foodSize};
                 dispatch({type:"UPDATE",foodItem});
                 return;
-            }
+        }
         
         
         dispatch({type:"ADD",foodItem});

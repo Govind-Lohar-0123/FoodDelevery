@@ -25,9 +25,10 @@ app.use(passport.initialize());
 connectDB(DATABASE_URL);
 
 //Load Routes
+
 app.use("/api", UserRoute);
 app.use("/foodApi", FoodRoute);
-app.use("/orderApi", OrderRoute);
+app.use("/orderApi",OrderRoute);
 
 app.get("/", (req, res) => (res.send("HelloWolrd")))
 

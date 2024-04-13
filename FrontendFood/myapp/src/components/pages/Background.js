@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "../js/script.js";
+
 import foodbg1 from "../images/foodbg1.jpg";
 import foodbg2 from "../images/foodbg2.jpg";
 import foodbg3 from "../images/foodbg3.jpg";

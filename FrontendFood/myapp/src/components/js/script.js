@@ -1,18 +1,20 @@
 ////////Background Imge//////////
-import $ from "jquery";
+
 
 // let slider=document.querySelector(".slider-div");
 var pages = "";
 var slides ="";
 var idx=0;
 
-$(document).ready(() => {
+const loaded=()=>{
+
+
     pages = document.querySelectorAll(".paginate > li");
     slides = document.querySelectorAll(".slide");
-    console.log(slides);
+    
     slides[0].style.left="0";
     function sliderChange(e) {
-        console.log(e);
+      
         let btnName=e.target.getAttribute("id");
        
         if(btnName=="prev" ){
@@ -51,19 +53,21 @@ $(document).ready(() => {
         page.addEventListener("click", sliderChange,true);
     })
 
-})
+
 
 
 
 // authentication/
-$(document).ready(() => {
+
+
+
     var login=document.querySelector(".login-btn");
     var signUp=document.querySelector(".register-btn");
     var loginForm=document.querySelector("#login");
     var signUpForm=document.querySelector("#register");
     var loginClose=document.querySelector(".close-login");
     var signUpClose=document.querySelector(".close-register");
-    console.log(login,signUp)
+    
     login.addEventListener("click",(e)=>{
         e.preventDefault();
         signUpForm.classList.add("d-none");
@@ -86,5 +90,8 @@ $(document).ready(() => {
         loginForm.classList.add("d-none");
         signUpForm.classList.add("d-none");
     })
-})
 
+
+
+}
+export default loaded;

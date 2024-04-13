@@ -3,6 +3,7 @@ import apiSlice from "../features/api/apiSlice.js";
 import orderSlice from "../services/orderSlice.js";
 import foodSlice from "../services/foodSlice.js";
 import searchSlice from "../features/searchSlice.js";
+import userSlice from "../features/userSlice.js";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import logger from "./logger.js";
 
@@ -14,6 +15,7 @@ const store=configureStore({
         [foodSlice.reducerPath]:foodSlice.reducer,
         [orderSlice.reducerPath]:orderSlice.reducer,
         searchFood:searchSlice,
+        userInfo:userSlice,
         
     },
    

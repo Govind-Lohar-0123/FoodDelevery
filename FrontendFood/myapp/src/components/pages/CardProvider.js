@@ -6,6 +6,7 @@ const reducer = (state, actions) => {
     switch (actions.type) {
         case "ADD":
             return [...state, actions.foodItem];
+        
         case "DELETE":
             {
                 let newArr = [];
@@ -24,7 +25,10 @@ const reducer = (state, actions) => {
                         return newArr;
                     }
                 })
+                return newArr;
             }
+        case "DROP" :
+            return [];
         default:
             return state;
     }

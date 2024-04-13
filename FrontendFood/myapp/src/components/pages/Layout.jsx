@@ -1,21 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../partials/header";
-import Footer from "../partials/Footer";
 import ProfileDash from "./UserProfile/ProfileDash";
-import Register from "./auth/login";
+import Register from "./auth/register.js";
 import Login from "./auth/login";
 import { getToken } from "./auth/tokenAction.js";
+import Footer from "../partials/Footer";
 function Layout(){
     
-   
+  
+ 
     return (<>
         <Header/>
-       
+        <Outlet/>
         <Login/>
         <Register/>
-        <Outlet/>
-       <Footer/>
+        <Footer/>
        
     </>)
 }

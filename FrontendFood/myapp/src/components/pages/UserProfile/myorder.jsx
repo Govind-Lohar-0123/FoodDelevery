@@ -1,25 +1,35 @@
-import react from "react";
+import react, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useStateCard, useDispatchCard } from "../CardProvider.js";
-import { useAddOrderMutation } from "../../../services/orderSlice.js";
+import { useAddOrderMutation, useGetOrderMutation, useGetOrderQuery } from "../../../services/orderSlice.js";
+import { getUser } from "../auth/userActions.js";
 export default function MyOrder() {
 
   const state = useStateCard();
   const cardDispatch = useDispatchCard();
-  const addOrderDispatch= useAddOrderMutation();
-  let totalPrice = 0;
-  console.log(state);
-
+  const [addOrderDispatch,responseInfo]= useAddOrderMutation();
+  let totalPrice =state.reduce((prev,curr)=>{return prev+curr.foodPrice},[0]);
+  console.log(totalPrice);
+  let loggedUser=getUser();
+  
+ 
+  
   const handleDelete = (e, removeId) => {
     e.preventDefault();
     cardDispatch({ type: "DELETE", removeId });
   }
 
-  const addOrderHandle=(e)=>{
+  const handleCheckout=async (e)=>{
     e.preventDefault();
-    addOrderDispatch({order_data:state});
-    console.log("Successfull");
+    console.log(state);
+    const result=await addOrderDispatch({order_data:[{order_date:new Date().toDateString()},...state],email:loggedUser});
+    if(result.data.status==true)
+      cardDispatch({type:"DROP"});
+    console.log("result",result);
   }
+
+
 
 
   return (<>
@@ -67,7 +77,7 @@ export default function MyOrder() {
               </tbody>
             </table>
             <p className="text-white mt-5 h2" >Total Price :- {totalPrice}/</p>
-            <button className="btn btn-primary mt-2" onClick={addOrderHandle}>Checkout</button>
+            <button className="btn btn-primary mt-2" onClick={handleCheckout}>Checkout</button>
           </> : <div className="text-white text-center h1">Card is Empty </div>
       }
     </div>

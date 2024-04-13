@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import "../../css/auth.css";
+import { useDispatch} from "react-redux";
 import { setToken, getToken } from "./tokenAction";
-import { useUserLoginMutation } from "../../../features/api/apiSlice";
+import { useGetUserQuery, useUserLoginMutation } from "../../../features/api/apiSlice";
 import { useNavigate } from "react-router-dom";
-
+console.log("login")
 export default function Login() {
     const [user, setUser] = useState({email: "", password: ""});
     const [isError, setError] = useState({ msg: "", type: "", success: false });
     const [login, responseInfo] = useUserLoginMutation();
     const navigate=useNavigate();
+    console.log("login")
+   
 
     // USER LOGIN SET
 
@@ -38,6 +41,8 @@ export default function Login() {
         // store token
         if (result.data.status) {
             setToken(result.data.token);
+            localStorage.setItem("user",user.email);
+            console.log(user.email);
             navigate("/");
         }
         //set result
