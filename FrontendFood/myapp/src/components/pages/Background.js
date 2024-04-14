@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 
-import foodbg1 from "../images/foodbg1.jpg";
-import foodbg2 from "../images/foodbg2.jpg";
-import foodbg3 from "../images/foodbg3.jpg";
-import foodbg4 from "../images/foodbg4.jpg";
+
 import { useDispatch ,useSelector} from "react-redux";
 import { addSearch } from "../../features/searchSlice.js";
 import { bgLoaded } from "../js/script.js";
@@ -21,15 +18,18 @@ function Background(){
 
     return (<>
         <div className="back-ground">
-            <div className="food-search bg-white">
-                <input type="text" className="" value={search} onChange={inputHandle}placeholder="Search food here..."/>
+            <div className="food-search ">
+                <input type="text" className=" bg-dark text-white" value={search} onChange={inputHandle} placeholder="Search Food Here..."/>
                 {/* <div className="search-icon rounded"><i className="fa-2x text-white fa-solid fa-magnifying-glass"></i></div> */}
             </div>
             <div className="slider-div">
-                <div className="slide"><img className="w-100 d-block bg-danger"src={foodbg1}  /></div>
-                <div className="slide"><img className="w-100 d-block bg-danger"src={foodbg2}  /></div>
-                <div className="slide"><img className="w-100 d-block bg-danger"src={foodbg3}  /></div>
-                <div className="slide"><img className="w-100 d-block bg-danger"src={foodbg4}  /></div>
+                {
+                    Array.from(new Array(10),(item,idx)=>{
+                        return <div className="slide"><img className="w-100 d-block bg-danger"src={`https://source.unsplash.com/random/${idx}?food`}  /></div>
+                        
+                    })
+                }
+              
                
                 
             </div>

@@ -6,12 +6,12 @@ class OrderController {
     static getOrder = async (req, res) => {
 
         try {
-            const result = await orderModel.find({ email: req.body.email });
-           
-            res.status(200).send({ order_data: result, status: true });
+            const result = await orderModel.findOne({ email: req.body.email });
+            if(result==null)res.status(200).send({ status: false });
+            else res.status(200).send({ order_data: result.order_data, status: true });
         }
         catch (err) {
-            res.send({ failed: err, status: false });
+            res.send({ failed: err+"", status: false });
         }
 
     }
@@ -22,7 +22,7 @@ class OrderController {
            
             if (result=="") {
                
-                 result = await orderModel.insertMany([{ ...req.body }]);
+                 result = await orderModel.insertMany([{email:req.body.email,order_data:[req.body.order_data]}]);
             
             }
 

@@ -41,7 +41,7 @@ function Card(props) {
 
     
         <div  className="card  col-div " >
-            <img src={`https://source.unsplash.com/random/${1}?food`} className="card-img " />
+            <img src={props.item.foodImg} className="card-img " />
             <div className="card-body p-0 ">
                 <p className="card-title font-weight-bold" >{props.item.foodName}</p>
                 <div className="mt-4 row-div">
@@ -56,7 +56,7 @@ function Card(props) {
                         setFoodSize(e.target.value);}}>
                         {
                             props.item.option.map((quant, i) => {
-                                return (<option  vlaue={quant}>{quant}</option>)
+                                return (<option  value={quant}>{quant}</option>)
                             })
                         }
 

@@ -18,7 +18,7 @@ class UserController {
             try {
                 let result = await userModel.findOne({ email: email });
                 if (result == null) {
-                    console.log(req.body);
+                    
                     const newUser = userModel(req.body);
                     let result = await newUser.save();
                     let SECRET_KEY = process.env.JWT_SECRET_KEY;
@@ -64,7 +64,7 @@ class UserController {
         }
     }
     static getUser=(req,res)=>{
-        console.log(req.user);
+       
         res.status(200).send(req.user);
     }
 

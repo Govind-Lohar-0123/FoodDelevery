@@ -20,11 +20,14 @@ function Navbar() {
     let loggedUser=getUser();
     let state=useStateCard();
     const navigate = useNavigate();
-    console.log("user=",loggedUser);
+    
     function logoutHandle(e) {
         e.preventDefault();
         removeToken();
-        navigate("/");
+       
+            navigate("/");
+        
+        
     }
    
 
@@ -50,22 +53,24 @@ function Navbar() {
                                 <ul className="gap-5 login-sign w-100">
                                     {(isLogin == null) ?
                                         <>
-                                            <li><NavLink to="#" className="btn bg-white login-btn">Login</NavLink></li>
-                                            <li><NavLink to="#" className="btn bg-white register-btn">SignUp</NavLink></li>
+                                            <li><NavLink to="/login" className="btn bg-white login-btn">Login</NavLink></li>
+                                            <li><NavLink to="/signup" className="btn bg-white register-btn">SignUp</NavLink></li>
                                         </> :
                                         <>
-                                            <li><NavLink to="/profile" className=" text-transform-lowercase "style={{textTransform:"lowercase"}}>{loggedUser}</NavLink></li>
+                                            <li><NavLink to="/profile" className=" text-transform-lowercase "style={{textTransform:"lowercase" }}>{loggedUser}</NavLink></li>
                                             <li><NavLink to="#" onClick={logoutHandle} className="btn bg-white  text-dark">Logout</NavLink></li>
                                         </>
 
                                     }
+                                    {isLogin?
                                     <li className="card-shopping p-2 " >
-                                        <NavLink to="/myorder" className="text-dark " id="totalCards">
+                                        <NavLink to="/mycard" className="text-dark " id="totalCards">
                                             <span className="mx-auto my-auto " id="badge">{state.length}</span>
                                             <i className=" d-inline fa-sharp fa-solid fa-cart-shopping"></i>
                                             Card
                                         </NavLink>
-                                    </li>
+                                    </li>:""
+                                    }
                                 </ul>
 
 

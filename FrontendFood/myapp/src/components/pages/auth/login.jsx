@@ -1,26 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../css/auth.css";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { setToken, getToken } from "./tokenAction";
 import { useGetUserQuery, useUserLoginMutation } from "../../../features/api/apiSlice";
 import { useNavigate } from "react-router-dom";
-console.log("login")
+import { NavLink } from "react-router-dom";
+
 export default function Login() {
-    const [user, setUser] = useState({email: "", password: ""});
+    const [user, setUser] = useState({ email: "", password: "" });
     const [isError, setError] = useState({ msg: "", type: "", success: false });
     const [login, responseInfo] = useUserLoginMutation();
-    const navigate=useNavigate();
-    console.log("login")
-   
+    const navigate = useNavigate();
 
-    // USER LOGIN SET
 
-    
+
+
+
     // -------------Handles----------------//
     const inputHandle = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value });
     }
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         for (let data in user) {
@@ -37,31 +37,34 @@ export default function Login() {
         const actualData = { ...user, token };
 
         const result = await login(actualData);
-        console.log(result);
+
         // store token
         if (result.data.status) {
             setToken(result.data.token);
-            localStorage.setItem("user",user.email);
-            console.log(user.email);
+            localStorage.setItem("user", user.email);
+
             navigate("/");
         }
         //set result
         setError({ msg: result.data.msg, success: true });
-       
-        document.querySelector("#login").classList.add("d-none");
+        // document.querySelector("#login").reset();
+        
+
+
     }
 
 
     //Component render
     return (
         <>
-            <div className="modal-div bg-secondary d-none " id="login">
+          <div className="auth-div">
+            <div className="modal-div bg-secondary  " id="login">
                 <h2 className="text-white font-weight-bold text-center ">LOGIN</h2>
                 <form action="" className="login-form">
 
                     <div className="field-group">
                         <label htmlFor="email">Email :-</label>
-                        <input type="text" name="email" value={user.email} onChange={inputHandle} placeholder="Enter User Email..." />
+                        <input type="email" name="email" value={user.email} onChange={inputHandle} placeholder="Enter User Email..." />
                     </div>
                     <div className="field-group">
                         <label htmlFor="password">Password :-</label>
@@ -70,13 +73,15 @@ export default function Login() {
 
                     <div>
                         <button className="btn btn-primary signup font-weight-bold mx-auto d-block" onClick={handleSubmit}>Login</button>
-                        <button className="btn btn-danger signup font-weight-bold close-login mx-auto d-block">Close</button>
+                        <NavLink to="/" className="active btn btn-danger">Close</NavLink>
                     </div>
+                   
                     {
                         (isError.success) ? <div className="alert alert-dark  ">{isError.msg}</div> :
                             ""
                     }
                 </form>
+            </div>
             </div>
         </>
     )

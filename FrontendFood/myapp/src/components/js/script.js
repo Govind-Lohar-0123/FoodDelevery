@@ -59,41 +59,5 @@ const bgLoaded=()=>{
 
 // authentication/
 }
-const authLoaded=()=>{
 
-
-
-    var login=document.querySelector(".login-btn");
-    var signUp=document.querySelector(".register-btn");
-    var loginForm=document.querySelector("#login");
-    var signUpForm=document.querySelector("#register");
-    var loginClose=document.querySelector(".close-login");
-    var signUpClose=document.querySelector(".close-register");
-    
-    login.addEventListener("click",(e)=>{
-        e.preventDefault();
-        signUpForm.classList.add("d-none");
-        loginForm.classList.remove("d-none");
-    })
-    signUp.addEventListener("click",(e)=>{
-        e.preventDefault();
-
-        signUpForm.classList.remove("d-none");
-        loginForm.classList.add("d-none");
-    })
-
-    loginClose.addEventListener("click",(e)=>{
-        e.preventDefault();
-        loginForm.classList.add("d-none");
-        signUpForm.classList.add("d-none");
-    })
-    signUpClose.addEventListener("click",(e)=>{
-        e.preventDefault();
-        loginForm.classList.add("d-none");
-        signUpForm.classList.add("d-none");
-    })
-
-
-
-}
-export {authLoaded,bgLoaded}
+export {bgLoaded}

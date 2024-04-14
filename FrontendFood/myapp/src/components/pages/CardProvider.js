@@ -21,7 +21,7 @@ const reducer = (state, actions) => {
                 let newArr = state;
                 newArr.find((item, i) => {
                     if (item.foodId == actions.foodItem.foodId) {
-                        console.log("update",item.foodId,actions.foodItem.foodId);
+                       
                         newArr[i] = { ...newArr[i], ...actions.foodItem }
                         return newArr;
                     }

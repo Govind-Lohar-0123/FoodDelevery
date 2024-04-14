@@ -4,13 +4,13 @@ import { useSelector } from "react-redux";
 import { useStateCard, useDispatchCard } from "../CardProvider.js";
 import { useAddOrderMutation, useGetOrderMutation, useGetOrderQuery } from "../../../services/orderSlice.js";
 import { getUser } from "../auth/userActions.js";
-export default function MyOrder() {
+export default function MyCard() {
 
   const state = useStateCard();
   const cardDispatch = useDispatchCard();
   const [addOrderDispatch,responseInfo]= useAddOrderMutation();
   let totalPrice =state.reduce((prev,curr)=>{return parseInt(prev) + parseInt(curr.foodPrice)},[0]);
-  console.log(totalPrice);
+ 
   let loggedUser=getUser();
   
  
@@ -26,7 +26,7 @@ export default function MyOrder() {
     const result=await addOrderDispatch({order_data:[{order_date:new Date().toDateString()},...state],email:loggedUser});
     if(result.data.status==true)
       cardDispatch({type:"DROP"});
-    console.log("result",result);
+    
   }
 
 

@@ -13,8 +13,7 @@ function Layout(){
     return (<>
         <Header/>
         <Outlet/>
-        <Login/>
-        <Register/>
+        
         <Footer/>
        
     </>)

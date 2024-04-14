@@ -3,9 +3,8 @@ import mongoose from "mongoose";
 const foodSchema=new mongoose.Schema({
     categoryName:{type:String,required:true},
     title:{type:String,required:true},
-    desc:{type:String,required:true},
-    option:{type:Array}
-   
+    option:{type:Array},
+    foodImg:{type:String,required:true}
     
 })
 
