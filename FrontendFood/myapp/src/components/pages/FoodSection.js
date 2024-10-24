@@ -11,7 +11,12 @@ function FoodSection() {
 
     return (<>
         <section id="food-section" className="">
-
+            {
+                ((responseInfo.isSuccess == false)) ? <Box sx={{ display: 'flex', flexDirection: "column", alignItems: "center", justifyContent: "center", zIndex: 20, textAlign: "center" }}>
+                    <CircularProgress color="primary" />
+                    <Typography className="text-bold text-muted">Loading</Typography>
+                </Box> : ""
+            }
             <marquee direction="right" behavior="alternate" loop className=" w-100 mb-1 text-black">
                 <h2 className="h1 w-25 text-white font-weight-bold my-3 food-title text-black text-center" >Welcome</h2>
             </marquee>
@@ -20,7 +25,7 @@ function FoodSection() {
             {
                 (responseInfo.isSuccess == true) ?
                     responseInfo.data.foodCat.map((data, i) => {
-                       
+
                         return (
 
 
@@ -30,7 +35,7 @@ function FoodSection() {
                                     {
                                         responseInfo.data.foodData.filter((item, i) => {
                                             console.log(search);
-                                           
+
                                             return (item.categoryName.toLowerCase() == data.categoryName.toLowerCase()) && (item.foodName.toLowerCase().includes(search.toLowerCase()))
                                         }).
 
@@ -44,10 +49,7 @@ function FoodSection() {
                             </section>)
                     })
 
-                    : <Box sx={{ display: 'flex', flexDirection: "column", alignItems: "center", justifyContent: "center", zIndex: 20, textAlign: "center" }}>
-                        <CircularProgress color="primary" />
-                        <Typography className="text-bold text-muted">Loading</Typography>
-                    </Box>
+                    : ""
             }
         </section>
 
