@@ -25,7 +25,7 @@ function Background(){
             <div className="slider-div">
                 {
                     Array.from(new Array(10),(item,idx)=>{
-                        return <div className="slide"><img className="w-100 d-block bg-danger"src={`https://source.unsplash.com/random/${idx}?food`}  /></div>
+                        return <div key={idx} className="slide"><img className="w-100 d-block bg-danger"src={`https://source.unsplash.com/random/${idx}?food`}  /></div>
                         
                     })
                 }

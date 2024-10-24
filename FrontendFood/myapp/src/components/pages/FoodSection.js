@@ -3,11 +3,12 @@ import { useGetFoodsQuery } from "../../services/foodSlice.js";
 import Card from "../partials/card.js";
 import { useSelector } from "react-redux";
 
+import { CircularProgress, Box, Typography } from "@mui/material";
 function FoodSection() {
     const responseInfo = useGetFoodsQuery();
-   
+
     const search = useSelector((state) => state.searchFood.search);
-   
+
     return (<>
         <section id="food-section" className="">
 
@@ -19,7 +20,7 @@ function FoodSection() {
             {
                 (responseInfo.isSuccess == true) ?
                     responseInfo.data.foodCat.map((data, i) => {
-
+                       
                         return (
 
 
@@ -27,11 +28,14 @@ function FoodSection() {
                                 <h2 className="h1 font-weight-bold m-0  food-category text-white  food-title  " >{data.categoryName}</h2>
                                 <div className="row-div pt-5">
                                     {
-                                        responseInfo.data.foodData.filter((item, i) => { 
-                                            console.log((item.foodName.toLowerCase().includes(search.toLowerCase())));
-                                            return (item.categoryName == data.categoryName) && (item.foodName.toLowerCase().includes(search.toLowerCase()))}).
+                                        responseInfo.data.foodData.filter((item, i) => {
+                                            console.log(search);
+                                           
+                                            return (item.categoryName.toLowerCase() == data.categoryName.toLowerCase()) && (item.foodName.toLowerCase().includes(search.toLowerCase()))
+                                        }).
 
-                                        map((item, i) => {
+                                            map((item, i) => {
+                                                // console.log("hello");
                                                 return (<Card item={item} key={i} />)
 
                                             })
@@ -39,7 +43,11 @@ function FoodSection() {
                                 </div>
                             </section>)
                     })
-                    : ""
+
+                    : <Box sx={{ display: 'flex', flexDirection: "column", alignItems: "center", justifyContent: "center", zIndex: 20, textAlign: "center" }}>
+                        <CircularProgress color="primary" />
+                        <Typography className="text-bold text-muted">Loading</Typography>
+                    </Box>
             }
         </section>
 

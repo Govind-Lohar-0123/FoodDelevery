@@ -196,15 +196,16 @@ position: absolute;
 }
 
 select{
-    font-size:1.3rem!important;
+    /* font-size:1rem!important; */
     border-radius:5px;
     font-weight:bold;
 }
 option{
    
     text-align: center;
-    border-bottom: solid 2px white!important;
-    color:white;background-color: blue;}
+    
+    
+}
 .food-price
 {
     font-size: 1.5rem;;
